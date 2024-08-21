@@ -1,0 +1,33 @@
+<style>
+ #MainContent .card { border: 1px solid #dee2e6; width: 500px; margin: 4em auto auto auto; padding: 20px; }
+p.track-order-header-text { margin-top: 0px; font-size: 16px; }
+.form-group.required { margin-bottom: 10px; }
+.form-group.required input { width: 100%; border: 1px solid #979797; padding: 12px 10px; }
+.form-group.required label.form-control-label { font-size: 14px; padding-bottom: 5px; display: block; }
+.form-group button.btn.btn-block { width: 100%; background: #222; color: #fff; border: 1px solid #222; padding: 12px 10px; font-size: 15px; text-transform: uppercase; letter-spacing: 1px; }
+section#shopify-section-template--16423160021052__1718698770728c6fd4 {
+    display: none;
+}
+</style>
+<div class="card"><form action="/trackorder/" class="trackorder" method="POST" name="trackorder-form">
+<div class="card-body">
+  <p id="trackerror" stlye="color:red"></p>
+  <p class="track-order-header-text">See your order even if you are not a registered user. Enter the order number and the billing address ZIP code.</p>
+  <div class="form-group required">
+  <label class="form-control-label" for="trackorder-form-number"> Order number </label> <input type="text" required="" class="form-control" id="trackorder-form-number" name="trackOrderNumber">
+  <div class="invalid-feedback" id="form-number-error"></div>
+  </div>
+  <div class="form-group"><button class="btn btn-block btn-primary check-status" type="submit" value="submit"> Check status </button></div>
+</div>
+</form></div>
+<script>
+  document.querySelector(".check-status").addEventListener('click', function(event) {
+    event.preventDefault();
+    if(document.querySelector("#trackorder-form-number").value.lenth<8){
+      document.querySelector("#trackerror").innerHTML = "Please enter the valid order number";
+    }
+    else{
+      window.location.href = "https://shopify.com/{{ shop.id }}/account/orders/"+document.querySelector("#trackorder-form-number").value+"?locale=en-US";      
+    }
+  });
+</script>

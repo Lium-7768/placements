@@ -1,0 +1,24 @@
+{% comment %} <div class="collection-header container">
+  <h2 style="font-size:12px; font-family: Helvetica, Arial, 'sans-serif'; font-weight: 900;letter-spacing: 1px;">{{ collection.metafields.global.title_tag }}</h2>
+<p style="font-size:12px; font-family: Helvetica, Arial, 'sans-serif'; line-height: 1.5;">{{ collection.metafields.global.description_tag }}</p>
+</div> {% endcomment %}
+<div class="collection-header container">
+{{ collection.description }}
+</div>
+
+<style>
+  .collection-header.container h2 { margin-top: 10px; font-size: 14px; margin-bottom: 0px; }
+  .collection-header.container p { margin: 0; }
+  .collection-header.container { margin-bottom: 30px; }
+</style>
+{% schema %}
+  {
+    "name": "Collection SEO",
+    "settings": [],
+    "presets": [
+    {
+      "name": "Collection SEO"
+    }
+    ]
+  }
+{% endschema %}

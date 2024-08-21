@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="{{ 'component-quick-cart.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'component-quick-cart.css' | asset_url | stylesheet_tag }}</noscript>
+<div class="halo-sidebar halo-sidebar-right halo-cart-sidebar" id="halo-cart-sidebar">
+    <button type="button" class="halo-sidebar-close button-effect" data-close-cart-sidebar aria-label="{{ 'general.common.close' | t }}">{% render 'icon-close' %} {{ 'general.common.close' | t }}</button>
+    <div class="halo-sidebar-header text-left">
+		<span class="title">Your Bag<!-- {{ 'sections.cart.my_cart' | t }}--></span>
+		<div class="wrapper-cartCount"><span class="cartCount" data-cart-count>{{ cart.item_count }}</span> <span data-cart-text>{% if cart.item_count == 1 %}{{ 'sections.cart.item' | t }}{% else %}{{ 'sections.cart.items' | t }}{% endif %}</span></div>
+	</div>
+    <div class="halo-sidebar-wrapper custom-scrollbar {{cart.items}}">
+      	{%- if settings.show_calculator_free_shipping_message -%}
+          <div class="previewCartMessage">{% render 'free-shipping-component' %}</div>
+        {%- endif -%}
+		<cart-coupon-discount data-is-sidebar="true">
+			<template data-discount-icon>{% render 'icon-discount' %}</template>
+			<template data-discounted-price-template>
+				<span class="previewCartItem-saving-price"><s class="before-discount-price" data-original-price-display>{{ item.original_price | money }}</s><span class="discounted-price" data-current-price-display>{{ item.final_price | money }}</span></span> 
+			</template>
+			<div class="previewCart-wrapper"></div>
+		</cart-coupon-discount>
+  	</div>
+</div>
+<style>
+   #halo-cart-sidebar ul.cart-discounts li.discounts__discount { padding: 0px; color: #dd1a81; font-size: 12px; font-weight: 700; text-transform: uppercase; }
+   #halo-cart-sidebar .previewCartItem-change { margin-top:2px; }
+   #halo-cart-sidebar ul.cart-discounts li.discounts__discount svg { margin-right: 5px; }
+   #halo-cart-sidebar .previewCartItem-options { margin-bottom: 2px; }
+   #halo-cart-sidebar s.before-discount-price { color: #747474; font-size: 13px !important; }
+   #halo-cart-sidebar span.previewCartItem-variant { color: #747474; }
+   #halo-cart-sidebar span.discounted-price { color: #222 !important; }
+   #halo-cart-sidebar .cartTool-item { padding: 7px 0px; }
+   #halo-cart-sidebar .previewCartItem { padding-bottom: 15px; margin-top: 15px; }
+   #halo-cart-sidebar .previewCartTool { border-top:1px solid #d7d7d7; }
+   #halo-cart-sidebar .previewCartItem-name { margin: 0 0 2px; }
+   #halo-cart-sidebar .previewCartItem-qty { margin-top: 10px; }
+   #halo-cart-sidebar .previewCartItem-qty .btn-quantity.plus:after { top:20px; }
+   #halo-cart-sidebar .previewCartItem-qty .btn-quantity:before { top:20px; }
+   #halo-cart-sidebar .previewCartItem-qty .quantity { padding: 8px 14px 8px 20px; }
+   #halo-cart-sidebar .previewCartInfo { border-top: 1px solid #dbdbdb; }
+   #halo-cart-sidebar cart-item-tool.previewCartTool { display: none; }
+   body.cart-sidebar-show .halo-cart-sidebar { z-index: 99999999 !important; }
+   /* .csapp_aiod_coupan, button.btn.button.cs_bogo_aiodp_opener{ display: none; } */
+</style>
+
+<script src="{{ 'halo-toolcart.js' | asset_url }}" defer="defer"></script>

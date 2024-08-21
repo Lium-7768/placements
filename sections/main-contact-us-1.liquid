@@ -1,0 +1,641 @@
+<link rel="stylesheet" href="{{ 'component-contact.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-contact-form.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'component-contact.css' | asset_url | stylesheet_tag }}</noscript>
+<noscript>{{ 'component-contact-form.css' | asset_url | stylesheet_tag }}</noscript>
+
+{%- liquid
+    assign padding_top = section.settings.mg_top_desktop | append: 'px'
+    assign padding_bottom = section.settings.mg_bottom_desktop | append: 'px'
+    assign padding_top_tablet = section.settings.mg_top_tablet | append: 'px'
+    assign padding_bottom_tablet = section.settings.mg_bottom_tablet | append: 'px'
+    assign padding_top_mobile = section.settings.mg_top_mobile | append: 'px'
+    assign padding_bottom_mobile = section.settings.mg_bottom_mobile | append: 'px'
+    assign show_breadcrumb = section.settings.show_breadcrumb
+    assign breadcrumb_alignment = section.settings.breadcrumb_alignment
+    assign breadcrumb_bg = section.settings.breadcrumb_bg
+    assign breadcrumb_gradient = section.settings.breadcrumb_gradient
+    assign breadcrumb_bg_mb = section.settings.breadcrumb_bg_mb
+    assign breadcrumb_gradient_mb = section.settings.breadcrumb_gradient_mb
+    assign show_page_title = section.settings.show_page_title
+    assign page_title_alignment = section.settings.page_title_alignment
+    assign container = section.settings.container
+    assign contact_form_title = section.settings.contact_form_title
+    assign contact_form_text = section.settings.contact_form_text
+    assign show_contact_info = section.settings.show_contact_info
+    if show_contact_info
+        assign has_contact_info = false
+        assign contact_info_title = section.settings.contact_info_title
+        assign contact_info_text = section.settings.contact_info_text
+        assign contact_info_address = section.settings.contact_info_address
+        assign contact_info_content_1 = section.settings.contact_info_content_1
+        assign contact_info_content_2 = section.settings.contact_info_content_2
+        assign enable_border_top = section.settings.enable_border_top
+        if contact_info_title != blank or contact_info_text != blank or contact_info_address != blank or contact_info_content_1 != blank or contact_info_content_2 != blank
+            assign has_contact_info = true
+        endif
+    endif
+-%}
+
+<div data-section-id="{{ section.id }}" data-section-type="contact" id="ContactSection-{{ section.id }}" data-section="{{ section.id }}">
+    <div class="contact-container {% if container == '1170' %}container-1170{% elsif container == '1770' %}container-1770{% elsif container == 'fullwidth'%} container-full{% else %}container{% endif %}">
+        {%- if show_breadcrumb -%}
+            {% render 'breadcrumb', alignment: breadcrumb_alignment %}
+        {%- endif -%}
+        {%- if show_page_title -%}
+            <h3 class="page-header text-{{ page_title_alignment }}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
+                {{ page.title | escape }}
+            </h3>
+        {%- endif -%}
+        <div class="page-content contact-content{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
+            <div class="contact contact-1">
+                <div class="contact-item {% if show_contact_info %}{% if has_contact_info %}contact-itemLeft{% endif %}{% endif %}">
+                    {%- if contact_form_title != blank -%}
+                        <h2 class="page-subheader contact-title{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
+                            {{ contact_form_title | escape }}
+                        </h2>
+                    {%- endif %}
+                    {%- if contact_form_text != blank -%}
+                        <div class="contact-text{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
+                            {{ contact_form_text }}
+                        </div>
+                    {%- endif %}
+                    {% render 'contact-form',
+                        section: section
+                    %}
+                </div>
+                {%- if show_contact_info -%}
+                    {%- if has_contact_info -%}
+                        <div class="contact-item contact-itemRight{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
+                            {%- if contact_info_title != blank -%}
+                                <h2 class="page-subheader contact-title">
+                                    {{ contact_info_title | escape }}
+                                </h2>
+                            {%- endif %}
+                            {%- if contact_info_text != blank -%}
+                                <div class="contact-text">
+                                    {{ contact_info_text | escape }}
+                                </div>
+                            {%- endif %}
+                            {%- if contact_info_address != blank or contact_info_content_1 != blank or contact_info_content_2 != blank -%}
+                                <div class="contact-info">
+                                    {%- if contact_info_content_1 != blank -%}
+                                        <div class="contact-store">
+                                            {{ contact_info_content_1 }}
+                                        </div>
+                                    {%- endif -%}
+                                    {%- if contact_info_address != blank -%}
+                                        <div class="contact-address">
+                                            <address>
+                                                {{ contact_info_address }}
+                                            </address>
+                                        </div>
+                                    {%- endif -%}
+                                    {%- if contact_info_content_2 != blank -%}
+                                        <div class="contact-store">
+                                            {{ contact_info_content_2 }}
+                                        </div>
+                                    {%- endif -%}
+                                </div>
+                            {%- endif %}
+                        </div>
+                    {%- endif %}
+                {%- endif -%}
+            </div>
+
+
+            <div class="accordion-cont">
+             <h3 style="margin-top: 45px; margin-bottom: 20px;">Frequently Asked Questions</h3> 
+            <div class="set">
+               <a class="level2" href="#t">ACCOUNT INFORMATION</a>
+               <div class="cont1">
+                  <div class="panel">
+                    <h5> ACCOUNT SETTINGS </h5>
+                    <p><strong>1. How do I change my email preferences or account information?</strong>Sign in to your account. From your customer dashboard, you can edit your email preferences in the “Personal Data” section. Additional account information can be changed by clicking on the appropriate menu items on the customer dashboard.</p>
+                    <p><strong>2. I’m not receiving Ashley Stewart emails, my birthday promo code, or Diva Dollars. What happened?</strong>If you are not yet on our email list, <a href="https://www.ashleystewart.com/email-signup.html" target="_blank" class="faqs">click here</a> to join. To ensure delivery to your inbox, be sure to add <a href="mailto:noreply@ashleystewart.com" target="_blank" class="faqs">noreply@ashleystewart.com</a> to your address book. If you have opted out of receiving marketing emails, we cannot send you these messages.</p>
+                    <p><strong>3. I forgot my password. Can I update or change my password?</strong>Request a password reset by selecting "SIGN IN" in the menu at the top of the page and clicking on the link that says, “Forgot Your Password?” Follow the prompts to enter your email address and we will send an email with instructions for resetting your password. Please Note: Passwords are case-sensitive.</p>
+                    <h5> TEXT MESSAGES </h5>
+                    <p><strong>1. What is the Ashley Stewart Mobile Messaging Program?</strong><a href="https://www.ashleystewart.com/email-signup.html" target="_blank" class="faqs">Sign up </a> to receive up-to-the-minute Ashley Stewart updates sent directly to your phone. By signing up, you agree to receive recurring automated promotional and personalized marketing text messages (e.g., cart reminders) to the mobile telephone number you provided. Consent is not a condition of any purchase. Message frequency will vary. By receiving text messages from Ashley Stewart, you also agree to the Ashley Stewart <a href="http://attn.tv/ashleystewart/terms.html" target="_blank" class="faqs">Terms of Use</a> and the Ashley Stewart <a href="https://attnl.tv/legal/p/V16" target="_blank" class="faqs">Privacy Policy </a>. Message and data rates may apply.</p>
+                    <p><strong>2. How do I opt out?</strong>Text the keyword “STOP” to 28789 to cancel. You will receive one additional message confirming your request has been processed. Our text message platform may not recognize or respond to unsubscribe requests that do not include the “STOP” keyword command and agree that Ashley Stewart, its affiliates, and service providers have no liability for failing to honor such requests. If you unsubscribe from one of our text message programs, you may continue to receive text messages from Ashley Stewart through other programs you have joined until you separately unsubscribe from those programs. You must opt out of each program you have joined.</p>
+                    <p><strong>3. Do I have to submit my birthday, name, or email to get offers?</strong>This information is not required. If you choose to share this information, you will get extra perks like Birthday Savings and special announcements. Text your birth month to 28789 after opting in to receive these perks. The following birth month formats are accepted: “1,” “JAN,” or “JANUARY” for January.</p>
+                    <p><strong>4. I opted in, but I did not get a coupon code.</strong>If you received a message indicating that you have already opted in, you are not eligible for another discount. You may only become eligible once for any specific campaign. For additional assistance, visit <a href="https://support.attentivemobile.com/help/" target="_blank" class="faqs">https://support.attentivemobile.com/help/</a> and submit a form with details about your problem.</p>
+                  </div>
+               </div>
+            </div>
+           <div class="set">
+               <a class="level2" href="#t">ORDERS</a>
+               <div class="cont1">
+                  <div class="panel">
+                    <p><strong>1. How do I place an order?</strong>Order online using our simple and secure checkout process.</p>
+                    <p><strong>2. When will my order be processed? When will I receive my order?</strong>Most orders placed Monday through Friday before 2 p.m. (ET) will be processed within two business days. Flash Sale orders may require additional days for processing. Holidays and weekends may impact delivery times. For more information regarding shipping times, please see our <a href="https://www.ashleystewart.com/orders/" target="_blank" class="faqs">Shipping/Tracking </a> section. </p>
+                    <p><strong>3. An item I want is out of stock. Will it be restocked?</strong>To keep our inventory fresh, most items are not restocked to make room for new merchandise. To check the restocking status of an item, please continue to visit <a href="https://www.ashleystewart.com/" target="_blank">AshleyStewart.com</a>.</p>
+                    <p><strong>4. Can I edit or cancel an order?</strong>We are unable to cancel or make changes to an order once submitted, including orders placed through Customer Service.  If you need to make a return, see our <a href="https://www.ashleystewart.com/customer-service/returns/returns.html" target="_blank" class="faqs">Returns</a> section.</p>
+                   <p><strong>5. Do you honor price adjustments or match retail store prices?</strong>Price adjustments will not be made for online purchases. We aim to have consistent pricing throughout our website and stores. However, we occasionally offer web-exclusive promotions. Pricing offered during "Flash Sales" is limited to the indicated hours. We do not match prices offered at Ashley Stewart retail stores or on other retail websites.</p>
+                  </div> 
+               </div>
+           </div>
+           <div class="set">
+             <a class="level2" href="#t">PAYMENT</a>
+             <div class="cont1">
+               <div class="panel">
+                  <p><strong>What forms of payment do you accept online? </strong>We accept the Ashley Stewart Credit Card, Ashley Stewart gift cards, Visa, MasterCard, Discover, American Express, Apple Pay, Afterpay, and PayPal.</p>
+                  <p><strong>1. When will I be billed for my order?</strong>You will be billed for your order when the order ships from our distribution center.</p>
+                  <p><strong>2. My credit card was declined but a charge is showing on my credit card. What happened?</strong>If your order was declined during the checkout process, you may have a pending hold or authorization on your credit card statement. If a transaction is declined, a hold will be removed from your statement in accordance with the policies established by your bank or credit card company. Contact your bank or credit card company for more details.</p>
+                  <p>You may receive an error message that says, "AVS Mis-match: The billing address provided does not match the billing address on file with your credit company." If this happens, update your billing information so that it matches the information your bank or credit card company has on file. Please note that promotional codes, online store credits, etc., may have to be re-entered if this occurs. </p>
+                  <p><strong>3. How do I apply for an Ashley Stewart Credit Card?</strong><a href="https://www.ashleystewart.com/credit-app-landing.html" target="_blank" class="faqs">Apply online </a> or call (800) 376-0581.</p>
+                  <h5>GIFT CARDS</h5>
+                  <p><strong>1. Where can I purchase a gift card?</strong>Physical gift cards can only be purchased in stores and e-gift cards can only be purchased online.</p>
+                  <p><strong>2. Where can I redeem gift cards?</strong>Physical and e-gift cards can be redeemed in Ashley Stewart stores and online. You may not redeem more than one gift card in the same transaction.</p>
+                  <p><strong>3. How are e-gift cards different from physical gift cards?</strong>E-gift cards are only sold at AshleyStewart.com and are delivered via email. Physical gift cards are only sold in stores. Both e-gift cards and physical gift cards can be used both in our stores and at AshleyStewart.com. E-gift cards cannot be converted into physical gift cards. </p>
+                  <p><strong>4. What terms and conditions apply to gift card purchases, usage, and acceptance?</strong>Ashley Stewart Credit Cards and Paypal cannot be used to purchase gift cards. A maximum of two gift cards can be purchased in one transaction. Refer to the back of your physical gift card for terms and conditions. The terms and conditions for e-gift cards are listed below.</p>
+                  <p>Gift cards should be treated like cash. If lost, stolen, or used without your permission, it will not be replaced. The available balance will be applied toward your purchase. Gift cards can only be used to purchase merchandise sold by Ashley Stewart.</p>
+                  <p>Gift cards do not expire. No fees shall be deducted from any remaining balance. Gift cards are not redeemable for cash unless otherwise required by law. Gift cards are not refundable; all sales are final. No variance from these terms and conditions will be allowed except in states where legally required.</p>
+                  <p>Gift cards are issued by Butterfly Giftcard Inc. (“Butterfly”). Butterfly is the sole legal obligor to the cardholder. Ashley Stewart and its affiliates or subsidiaries (other than Butterfly) bear no responsibility or liability for gift cards. You hereby knowingly release Ashley Stewart and its affiliates/subsidiaries (other than Butterfly) from all liability or claims of any nature whatsoever arising in connection with the gift card. By accepting or using a gift card, you agree to these terms and conditions (which may be changed from time to time at Butterfly’s discretion). The laws of the Commonwealth of Virginia, without regard to principles of conflict of laws, shall govern this agreement and use of your gift card.</p>
+                  <p><strong>5. What denominations do e-gift cards come in?</strong>E-gift cards can be purchased with a minimum value of $10 and a maximum value of $300 per card.</p>
+                  <p><strong>6. How do I check the balance on my gift cards?</strong>Visit our <a href="/s/AshleyStewart/giftcertpurchase/" target="_blank" class="faqs">Gift Card</a> page   to check the value of your card.</p>
+                  <p><strong>7. Do I have to spend the exact amount on my gift card? Can they be reloaded?</strong>The remaining balance left on a gift card can be saved and used later. If your order total is more than the current balance on the gift card, you can pay the remaining balance with an alternate form of payment. Unfortunately, we cannot add value to an activated gift card.</p>
+                  <p><strong>8. Do gift card funds expire? Are there any associated fees?</strong>There are no fees associated with Ashley Stewart Gift cards and they do not expire.</p>
+                  <p><strong>9. What happens if I misplace my e-gift card?</strong>Gift cards should be treated like cash. If lost, stolen, or used without your permission, it will not be replaced. The person who gifted you the card may have a record of their purchase. If you purchased the gift card, check your email for a purchase confirmation. If you are unable to find a record of your e-gift card, please send us an email at <a href="mailto:customerfeedback@ashleystewart.com" target="_blank" class="faqs">customerfeedback@ashleystewart.com</a> for assistance.</p>
+                  <p><strong>10. What happens if I entered an incorrect email address for an e-gift card recipient? How do I know a recipient received the e-gift card I sent them? </strong>Take extra care in inputting the email address for your gift recipients and make sure to check the box indicating that you wish to receive a copy of the e-gift card. We are not responsible for e-gift cards that are not received due to the purchaser's failure to enter an accurate recipient email address.</p>
+                  <p><strong>11. Why was my gift card declined?</strong>Double-check the gift card number you entered for accuracy. Your gift card may not have a remaining balance. Use the “GIFT CARDS” link on <a href="https://www.ashleystewart.com/" target="_blank" class="faqs">AshleyStewart.com</a> to verify the value remaining on the card. </p>
+                  <p><strong>12. Can I purchase an e-gift card with other merchandise in the same transaction?</strong>Yes. If you purchased other items at the same time, you may see two charges on your credit card as the e-gift card purchase is processed immediately. The balance of your order will be charged once your package ships. An e-gift card receipt is emailed to you when you check the box requesting a copy at the time of purchase.</p>
+                  <p><strong>13. What happens if I return something purchased with an Ashley Stewart gift card?</strong>A credit will be applied to the original gift card. Once we have processed your return, an email indicating the amount returned to your card, the card number, and the current card balance will be sent to the email used for the original online purchase of the returned items.</p>
+                  <p><strong>14. How long should I keep my gift card after using it for an online purchase?</strong>Keep your card until you have used the balance and received your ordered items. Should you decide to make a return, the refund will be credited back to your gift card. For your convenience, a refund email indicating the amount of the refund, the card number, and the card balance will be sent to the email you entered for the initial purchase.</p>
+                  <h5>AFTERPAY</h5>
+                  <p><strong>1. What are Installments by Afterpay?</strong>Installments by Afterpay allow you to make purchases now and pay in four installments every two weeks without any interest. First-time customers will need to register with Afterpay and provide payment details. Returning customers can simply sign in to make a purchase. All items in your shopping bag must be eligible for Installments by Afterpay. A minimum purchase amount may apply and you must meet additional eligibility requirements to qualify.</p>
+                
+                  <p><strong>2. Where can I use Installments by Afterpay? What products are eligible? Is there a limit to how much I can spend?</strong>Installments by Afterpay can only be applied to purchases made on AshleyStewart.com. Afterpay is not available on purchases of gift cards. Transaction value limits may apply.</p>
+                  <p><strong>3. Can I use Installments by Afterpay if I’m an international customer?</strong>Customers with international billing addresses, shipping addresses, or phone numbers are not able to use Afterpay.</p>
+                  <p><strong>4. How does the payment schedule work? What if I can't pay an Afterpay installment?</strong>Customers make their first payment at the time of purchase and are charged the remaining three payments every two weeks. You can make additional payments before your scheduled billing date through your Afterpay account. Late fees may apply for missed payments. Learn more about <a href="https://help.afterpay.com/hc/en-us" target="_blank" class="faqs">Afterpay Payments</a>. </p>
+                  <p><strong>5. How do I return or exchange an item purchased using Installments by Afterpay?</strong>Ensure your return or exchange meets our <a href="https://help.afterpay.com/hc/en-us" target="_blank" class="faqs">Return Policy </a>. Afterpay purchases can be mailed back to the warehouse or returned to Ashley Stewart retail stores. In store, customers must use the Afterpay App and select return at the store option. Afterpay will be notified of your return and will process the appropriate refunds.</p>
+                  <p><strong>6. Where can I find out more about Afterpay?</strong>Visit the Afterpay website for FAQs, terms, the Installment Agreement, and Afterpay’s <a href="https://www.afterpay.com/en-US/privacy-policy" target="_blank" class="faqs">Privacy Policy </a>. <a href="https://help.afterpay.com/hc/en-us/requests/new" target="_blank" class="faqs">Contact Afterpay</a> with questions about your account or by emailing <a href="mailto:info@afterpay.com" target="_blank" class="faqs">info@afterpay.com</a>.</p>
+                </div>
+             </div>
+           </div>
+           <div class="set">
+             <a class="level2" href="#t">SHIPPING/TRACKING</a>
+             <div class="cont1">
+               <div class="panel">
+                  <p><strong>1. When will my order be processed? </strong>Most orders placed Monday through Saturday before 2 p.m. (ET) will be processed within two business days. Flash Sale orders may require additional days for processing. Holidays and weekends may impact delivery times.</p>
+                  <p><strong>2. How will my order be shipped? What are the rates for domestic shipping?</strong>Orders are shipped via United Parcel Service (UPS), FedEx, or a similar carrier. Orders shipping domestically generally use a flat rate regardless of the amount of merchandise you purchase and will not vary based on distance, only by the speed of service.Standard, Priority, and Express Shipping: Delivered Monday through Saturday excluding holidays . Saturday delivery may vary by location and carrier availability. Orders shipped outside of the continental United States may require extra transit time. Domestic shipping rates to physical addresses and PO Boxes provided by the U.S. Postal Service are determined based on the table below. Rates for packages sent to APO/FPO addresses are determined by the address and package weight elements.</p>
+
+                	<table class="table-condensed table-dark table-striped" id="t01" style="margin: 30px  0 0">
+                		<tbody>
+                			<tr>
+                				<th class="col1">Service Level (48 Mainland States)</th>
+                				<th>Flat Rate*</th>
+                			</tr>
+                			<tr>
+                				<td>Economy <span style="font-style: normal;">delivery in 3-7 days, Monday through Saturday, excluding holidays on orders placed by 2:00 P.M. ET</span></td>
+                				<td>$9.95</td>
+                			</tr>
+                			<tr>
+                				<td>Standard <span style="font-style: normal;">delivery in 2-4 days, Monday through Saturday, excluding holidays on orders placed by 2:00 P.M. ET. This shipping method requires a signature.</span></td>
+                				<td>$12.95</td>
+                			
+                			</tr>
+                			<tr>
+                				<td>Express <span style="font-style: normal;">delivery in 1-2 days, Monday through Saturday, excluding holidays on orders placed by 1:00 P.M. ET.</span></td>
+                				<td>$28.00</td>
+                			</tr>
+                		</tbody>
+                	</table>
+
+                    <table class="table-condensed table-dark table-striped" id="t02" style="margin: 30px  0 0">
+                    	<tbody>
+                    		<tr>
+                    			<th class="col1">Service Level (Alaska, Hawaii).</th>
+                    			<th>Flat Rate*</th>
+                    		</tr>
+                    		<tr>
+                    			<td>Standard <span style="font-style: normal;">delivery typically within 8-10 days, Monday through Saturday, excluding holidays.&nbsp; <span style="font-style: normal;">Flash Sales may require an additional 1 - 2 days.</span></span></td>
+                    			<td>$14.95</td>
+                    		</tr>
+                    		<tr>
+                    			<td>Priority <span style="font-style: normal;">delivery typically within 4-6 days, Monday through Saturday, excluding holidays. <span style="font-style: normal;">Flash Sales may require an additional 1 - 2 days.</span></span></td>
+                    			<td>$20.95</td>
+                    		</tr>
+                    		<tr>
+                    			<td>Express Delivery is not available at this time.<span style="font-style: normal;"><span style="font-style: normal;"></span></span></td>
+                    			<td>N/A</td>
+                    		</tr>
+                    	</tbody>
+                    </table>
+
+                    <table class="table-condensed table-dark table-striped" id="t03" style="margin: 30px  0 0">
+                    	<tbody>
+                    		<tr>
+                    			<th class="col1">Service Level (APO/FPO/DPO &amp; Other US Territories – Guam, Puerto Rico, USVI, etc.)</th>
+                    			<th>&nbsp;</th>
+                    		</tr>
+                    		<tr>
+                    			<td>Standard <span style="font-style: normal;">delivery typically within 8-10 days, Monday through Saturday, excluding holidays. <span style="font-style: normal;">Flash Sales may require an additional 1 - 2 days.</span></span></td>
+                    			<td>Starts at $14.95***</td>
+                    		</tr>
+                    		<tr>
+                    			<td>Priority Delivery is not available at this time.<span style="font-style: normal;"><span style="font-style: normal;"> </span></span></td>
+                    			<td>N/A</td>
+                    		</tr>
+                    		<tr>
+                    			<td>Express Delivery is not available at this time.<span style="font-style: normal;"><span style="font-style: normal;"></span></span></td>
+                    			<td>N/A</td>
+                    		</tr>
+                    	</tbody>
+                    </table>
+                     <p>* Flat rate pricing applies for packages up to 50 lbs. and with dimensions less than 130 inches. Shipping for large packages will be calculated separately based on weight, size, and delivery location.<br>
+                    ** Express Shipping typically arrives within two to three business days (i.e., if submitted on Saturday or Sunday, the order will ship on Monday and arrive by Wednesday). Flash Sale orders may require additional days for processing due to order volume at our warehouse.<br>
+                    *** Shipping costs may vary. Your rate will be calculated at checkout.</p>
+                    <p><strong>3. Can I track the status of my order?</strong>Order tracking varies based on the shipping carrier and destination. If your order is being shipped to an address within the United States, your shipping confirmation email will include a tracking number. To check the status of your order, visit our tracking page <a href="https://www.ashleystewart.com/login/?rurl=1" target="_blank" class="faqs">here</a>. If you didn’t receive an order confirmation email, shipping confirmation, or haven’t received your order by the expected delivery date, please check your Spam or Junk Mail folder or please send us an email at <a href="mailto:customerfeedback@ashleystewart.com" target="_blank" class="faqs">customerfeedback@ashleystewart.com</a> for assistance. We may require proof of identity for delivery in certain circumstances. If additional proof of identity is required, we will contact you. Carriers for international orders do not currently provide tracking numbers. However, you will receive an estimated delivery time in your shipping confirmation email. Please Note: Customer service representatives are not able to trace international shipments until the expected delivery window has been exceeded.</p>
+                    <p><strong>4. Do you ship to military addresses or P.O. Boxes?</strong>We ship to PO Boxes and military addresses (APO/FPO/DPO) within U.S. Postal Service capabilities. We do not currently offer priority or express shipping for these shipments. Please Note: The average delivery time for military deliveries is 7 to 21 business days, depending on the selected shipping method. For international military shipments, select "United States" as your country, enter APO or FPO as your city and select AP - Armed Forces Pacific, AA - Armed Forces Americas (except Canada), or AE - Africa, Canada, Europe, Middle East as your state from the drop-down menu.</p>
+                  </div>
+             </div>
+           </div>
+           <div class="set">
+               <a class="level2" href="#t">BUY ONLINE, PICK UP IN STORE</a>
+               <div class="cont1">
+                  <div class="panel">
+                     <div class="panel">
+                       <p><strong>1. When will I be charged for my purchase?</strong>You will be charged when the store fulfills your order.</p>
+                       <p><strong>2. Can I cancel an order once it is placed?</strong>Check that your return or exchange meets our <a href="https://www.ashleystewart.com/return-policy.html" target="_blank" class="faqs">Return Policy</a>. If your order has not yet been fulfilled, contact Customer Service for assistance. If your order has already been fulfilled by the store, you will need to process your return at the store in person or via phone. An associate will need your payment information when making a return via phone. For your security, your credit card number will be entered directly into the system for verification, but never written down. </p>
+                       <p><strong>3. Can someone else pick up my order?</strong>When you are contacted regarding pickup, please specify who will be picking up the order. The person picking up the order must show their ID for verification.</p>
+                       <p><strong>4. What if something is missing from my order?</strong>Please let us know. We will retrieve a duplicate item or immediately process a refund.</p>
+                     </div>
+                  </div> 
+               </div>
+           </div>
+           <div class="set">
+               <a class="level2" href="#t">RETURNS/CUSTOMER SERVICE</a>
+               <div class="cont1">
+                  <div class="panel">
+                   <h4><strong>Returns &amp; Exchanges</strong></h4>
+                    <div>
+                      <p><strong>New! Start your online return below and follow a few easy steps to print your return label or generate a code (no printer needed)</strong>We will gladly accept returns on eligible items within 30 days from your order ship date.You can return most items purchased on AshleyStewart.com to one of our retail store or to our warehouse.Click below to get started<br><a href=" https://returns.narvar.com/ashleystewart/returns?locale=en_US" target="_blank"><button class="button button1">START MY RETURN</button> </a></p>
+                    </div>
+                    <h4><strong>Returns Policy</strong></h4>
+                    <div> 
+                      <p>We want you to love your Ashley Stewart purchase, but understand you may need to return it. You may return eligible items within 30 days of your in-store purchase or your online order ship date. All items must be returned in new and unused condition, with tags attached in the original packaging.</p>
+                      <p>Items purchased in or picked up in a store must be returned to an Ashley Stewart store. Items marked as "Online Exclusive" or purchased with a digital wallet (PayPal, Klarna, etc.) must be returned to our warehouse. Online Exclusives include items sized 28 and up and bra cups C, F, G, &amp; H.</p>
+                      <p>Items not eligible for returns or exchanges:</p>	
+                  	<ul>
+                  		<li> Items marked as "Final Sale" usually with “.49” and “.98” price ending</li>	
+                  		<li> Items that have been worn or used</li>
+                  		<li> Gift Cards and eGift Cards</li>
+                      </ul>
+                  	<p>All refunds will be issued to the original form of payment.If an order level coupon or discount was applied, the value will be pro-rated across all qualifying items and deducted from the refund. </p>	
+                  </div>
+                  	<h4><strong>Returns by Mail</strong></h4>
+                     <div>
+                      <p>You may ship your eligible items back by using our prepaid label or printerless code within 30 days of your order ship date. Your Order Ship date can be located on your Shipping Confirmation email. Please include the invoice included in your original shipment.</p>
+                      <p>Returns will be processed within 14 business days from the day we receive your return package and you will receive an email confirmation when complete.</p>
+                      <p>When using our prepaid label or printerless code $10 will be deducted from your return total.</p>
+                      <p>You will also have the option to select the carrier of your choice once you start your return. Returns will be shipped to: <br>
+                   Ashley Stewart Warehouse c/o Radial<br>200 Richards Run Road<br>Burlington, NJ 08016 USA</p>
+                  </div>
+                  	<h4><strong>Returning to a Store </strong></h4>
+                      <div>
+                  	 <p>Ashley Stewart stores will gladly accept returns of eligible items purchased on ashleystewart.com or in a store. Items must comply with our standard return policy and be accompanied with a copy of the receipt or invoice.  If you do not provide the receipt or invoice, we will provide a merchandise credit gift card for the lowest known selling price of the item and may request valid identification for credit issuance.</p>
+                       <a href="https://www.ashleystewart.com/stores/?showMap=true" target="_blank"><button class="button button1">LOCATE A STORE</button></a>
+                  	 <a style="text-decoration:underline" href="/contactus/">Contact Us</a>
+                      </div>
+                  </div>
+               </div>
+           </div>
+           <div class="set">
+               <a class="level2" href="#t">ADDITIONAL QUESTIONS</a>
+               <div class="cont1">
+                  <div class="panel">
+                        <p><strong>1. California Proposition 65</strong>California's Proposition 65 entitles California consumers to special warnings for products that contain chemicals known to the state of California to cause cancer and birth defects or other reproductive harm if those products expose consumers to such chemicals above certain threshold levels. We care about our customers' safety and hope that the information below helps with your buying decisions. The general Proposition 65 notice is as follows:</p>
+                        <p><strong>WARNING</strong>: This product contains chemicals known to the State of California to cause cancer and birth defects or other reproductive harm. Do not put in mouth or chew and keep items away from children.</p>
+                        <p><strong>2. How do I obtain information regarding career opportunities?</strong>We’re an energetic and diverse team that believes that work should be collaborative, growth-minded, and fun. <a href="http://www.linkedin.com/company/ashley-stewart" target="_blank" class="faqs">Join our  team</a> as we continue to rewrite what it means to be a fashionable woman.</p>
+                        <p><strong>3. How do I become a model?</strong>Post your pictures using #AshleyStewart or @byashleystewart for a chance to be featured on our social media platforms. We also hold modeling contests in some of our stores. Information on contests is posted on our <a href="https://www.facebook.com/byAshleyStewart/" target="_blank" class="faqs">Facebook page</a>.</p>
+                        <p><strong>4. How do I report any suspicious, suspected illegal, or unethical activity?</strong>Please contact the confidential Silent Witness Hotline toll-free at (800) 338-2327.</p>
+                        <p><strong>5. Is your site secure? Is my information kept private?</strong>AshleyStewart.com purchases are backed by our Safe Shopping Guarantee. This means you pay nothing if unauthorized charges are made to your card as a result of shopping on this website. Our secure server software (SSL) is the industry standard and is among the best software available today for secure commerce transactions. It encrypts personal information including your credit card number, name, and address. Our website is a registered member of veriSign, the leading provider of internet trust services, including authentication, validation, and payment. The security lock symbol appears only at the credit card entry stage of the checkout process.</p>
+                      </div>
+               </div>
+           </div>
+         </div>
+          
+          
+        </div>
+    </div>
+</div>
+
+<style type="text/css" media="screen">
+  .panel p strong { display: block; font-size: 14px; }
+  .panel p { font-size: 13px; }
+  .panel h5 { font-family: 'lato'; font-weight: 600; font-size: 14px; }
+  .set > a.level2:before { position: absolute; content: '';
+    background-image: url(https://cdn.shopify.com/s/files/1/0878/8813/4446/files/plus.png); width: 20px; height: 20px; z-index: 9999999; top: 18px; right: 25px;
+    background-repeat: no-repeat; background-size: contain; border-radius: 50%; }
+  .set a.level2.active:before { background-image: url(https://cdn.shopify.com/s/files/1/0878/8813/4446/files/minus.png); }
+  .cont1 { display: none; padding: 0px 35px 14px 20px; background: #f7f7f7; }
+  .set a.level2 { position: relative; display: block; padding: 16px 15px 17px 20px; text-decoration: none; color: #000 !important;
+    -webkit-transition: all 0.2s linear; -moz-transition: all 0.2s linear; transition: all 0.2s linear; text-transform: capitalize;
+    background: #f7f7f7; font-size: 16px; font-weight: 600; line-height: 20px; }
+  .set:nth-child(odd) a.level2 { background: #eee; }
+  .set:nth-child(even) a.level2 { background: #ccc; }
+  table.table-striped { width: 100%; border: 1px solid #dddada; border-collapse: collapse; }
+  table.table-striped td { padding: 5px 15px; border: 1px solid #d1d1d1; text-align: center; }
+  table.table-striped th { padding: 10px 5px; border: 1px solid #d1d1d1; text-align: center; font-size: 13px; background: #ededed; }
+  .panel a button { width: auto; display: table; }
+  @media ( max-width:768px ) {
+    h1.main-page-title.page-header { padding: 30px 0px 30px; font-size: 17px; }
+    .set a.level2 { font-size: 15px; }
+  }
+
+
+    #ContactSection-{{ section.id }}{
+        padding-top: {{ padding_top }};
+        padding-bottom: {{ padding_bottom }};
+    }
+
+    #ContactSection-{{ section.id }} .contact.contact-1 .contact-address + .contact-store {
+        {% if enable_border_top %}
+            border-top: 1px solid #dedede;
+            padding-top: 5px;
+        {% else %}
+            padding-top: 0;
+        {% endif %}
+        
+        margin-top: 15px;
+    }
+    
+    @media (max-width: 1024px) {
+        #ContactSection-{{ section.id }}{
+            padding-top: {{ padding_top_tablet }};
+            padding-bottom: {{ padding_bottom_tablet }};
+        }
+
+        #ContactSection-{{ section.id }} .breadcrumb {
+            background: {% if breadcrumb_gradient_mb != blank and breadcrumb_gradient_mb != 'rgba(0,0,0,0)' %}{{ breadcrumb_gradient_mb }}{% elsif breadcrumb_bg_mb != blank and breadcrumb_bg_mb != 'rgba(0,0,0,0)' %}{{ breadcrumb_bg_mb }}{% endif %};
+        }
+    }
+    
+    @media (max-width: 550px) {
+        #ContactSection-{{ section.id }}{
+            padding-top: {{ padding_top_mobile }};
+            padding-bottom: {{ padding_bottom_mobile }};
+        }
+    }
+
+    @media (min-width: 1025px) {
+        #ContactSection-{{ section.id }} .breadcrumb-container {
+            position: relative;
+        }
+
+        #ContactSection-{{ section.id }} .breadcrumb::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: {% if breadcrumb_gradient != blank and breadcrumb_gradient != 'rgba(0,0,0,0)' %}{{ breadcrumb_gradient }}{% elsif breadcrumb_bg != blank and breadcrumb_bg != 'rgba(0,0,0,0)' %}{{ breadcrumb_bg }}{% endif %};
+            z-index: -1;
+        }
+    }
+</style>
+
+<script> 
+    $(document).ready(function() {
+        $(".set > a").on("click", function() {
+        if ($(this).hasClass("active")) {
+          $(this).removeClass("active");
+          $(this).siblings(".cont1").slideUp(200);
+        } else {
+          $(".set > a").removeClass("active");
+          $(this).addClass("active");
+          $(".cont1").slideUp(200);
+          $(this).siblings(".cont1").slideDown(200);
+        }
+      });
+    }); 
+</script>
+
+{% schema %}
+	{
+		"name": "t:sections.main_contact.name",
+        "settings": [
+            {
+                "type": "header",
+                "content": "t:settings_schema.general.name"
+            },
+            {
+                "type": "checkbox",
+                "id": "show_breadcrumb",
+                "label": "t:sections.general.settings.breadcrumb.label__1",
+                "default": true
+            },
+            {
+                "type": "select",
+                "id": "breadcrumb_alignment",
+                "label": "t:sections.general.settings.breadcrumb.label__2",
+                "options": [
+                    {
+                        "value": "left",
+                        "label": "t:sections.general.settings.breadcrumb.options__1"
+                    },
+                    {
+                        "value": "center",
+                        "label": "t:sections.general.settings.breadcrumb.options__2"
+                    },
+                    {
+                        "value": "right",
+                        "label": "t:sections.general.settings.breadcrumb.options__3"
+                    }
+                ],
+                "default": "left"
+            },
+            { 
+                "type": "color",
+                "id": "breadcrumb_bg",
+                "label": "t:settings_schema.colors.settings.colors_name.background_color"
+            },
+            {
+                "type": "color_background",
+                "id": "breadcrumb_gradient",
+                "label": "t:settings_schema.colors.settings.colors_name.background_color_gradient"
+            },
+            { 
+                "type": "color",
+                "id": "breadcrumb_bg_mb",
+                "label": "t:settings_schema.colors.settings.colors_name.background_color_mobile",
+                "default": "#f6f6f6"
+            },
+            {
+                "type": "color_background",
+                "id": "breadcrumb_gradient_mb",
+                "label": "t:settings_schema.colors.settings.colors_name.background_gradient_mobile"
+            },
+            {
+                "type": "checkbox",
+                "id": "show_page_title",
+                "label": "t:sections.general.settings.page-title.label__1",
+                "default": true
+            },
+            {
+                "type": "select",
+                "id": "page_title_alignment",
+                "label": "t:sections.general.settings.page-title.label__2",
+                "options": [
+                    {
+                        "value": "left",
+                        "label": "t:sections.general.settings.page-title.options__1"
+                    },
+                    {
+                        "value": "center",
+                        "label": "t:sections.general.settings.page-title.options__2"
+                    },
+                    {
+                        "value": "right",
+                        "label": "t:sections.general.settings.page-title.options__3"
+                    }
+                ],
+                "default": "left"
+            },
+            {
+                "type": "select",
+                "id": "container",
+                "label": "t:sections.layout.container.option",
+                "default": "container",
+                "options": [
+                    {
+                        "value": "container",
+                        "label": "t:sections.layout.container.option1"
+                    },
+                    {
+                        "value": "1170",
+                        "label": "t:sections.layout.container.option4"
+                    },
+                    {
+                        "value": "fullwidth",
+                        "label": "t:sections.layout.container.option2"
+                    },
+                    {
+                        "value": "1770",
+                        "label": "t:sections.layout.container.option3"
+                    }
+                ]
+            },
+            {
+                "type": "header",
+                "content": "t:sections.layout.margin_top"
+            },
+            {
+                "type": "range",
+                "id": "mg_top_desktop",
+                "label": "t:sections.layout.mg_desktop.label",
+                "min": 0,
+                "max": 100,
+                "step": 5,
+                "unit": "t:sections.layout.mg_desktop.unit",
+                "default": 50
+            },
+            {
+                "type": "range",
+                "id": "mg_top_tablet",
+                "label": "t:sections.layout.mg_tablet.label",
+                "min": 0,
+                "max": 100,
+                "step": 5,
+                "unit": "t:sections.layout.mg_desktop.unit",
+                "default": 50
+            },
+            {
+                "type": "range",
+                "id": "mg_top_mobile",
+                "label": "t:sections.layout.mg_mobile.label",
+                "min": 0,
+                "max": 100,
+                "step": 5,
+                "unit": "t:sections.layout.mg_desktop.unit",
+                "default": 50
+            },
+            {
+                "type": "header",
+                "content": "t:sections.layout.margin_bottom"
+            },
+            {
+                "type": "range",
+                "id": "mg_bottom_desktop",
+                "label": "t:sections.layout.mg_desktop.label",
+                "min": 0,
+                "max": 100,
+                "step": 5,
+                "unit": "t:sections.layout.mg_desktop.unit",
+                "default": 50
+            },
+            {
+                "type": "range",
+                "id": "mg_bottom_tablet",
+                "label": "t:sections.layout.mg_tablet.label",
+                "min": 0,
+                "max": 100,
+                "step": 5,
+                "unit": "t:sections.layout.mg_desktop.unit",
+                "default": 50
+            },
+            {
+                "type": "range",
+                "id": "mg_bottom_mobile",
+                "label": "t:sections.layout.mg_mobile.label",
+                "min": 0,
+                "max": 100,
+                "step": 5,
+                "unit": "t:sections.layout.mg_desktop.unit",
+                "default": 50
+            },
+            {
+                "type": "header",
+                "content": "t:sections.main_contact.settings.header__2"
+            },
+            {
+                "type": "textarea",
+                "id": "contact_form_text",
+                "label": "t:sections.image-banner.blocks.image.settings.content.label__16"
+            },
+            {
+                "type": "header",
+                "content": "t:sections.main_contact.settings.header__3"
+            },
+            {
+                "type": "checkbox",
+                "id": "show_contact_info",
+                "label": "t:sections.main_contact.settings.contact_info.label__1",
+                "default": true 
+            },
+            {
+                "type": "text",
+                "id": "contact_info_title",
+                "label": "t:sections.image-banner.blocks.image.settings.content.label__19",
+                "default": "Contact Information"
+            },
+            {
+                "type": "textarea",
+                "id": "contact_info_text",
+                "label": "t:sections.main_contact.settings.contact_info.label__3",
+                "default": "We'd love to hear from you - please use the form to send us your message or ideas. Or simply pop in for a cup of fresh tea and a cookie:"
+            },
+            {
+                "type": "textarea",
+                "id": "contact_info_address",
+                "label": "t:sections.main_contact.settings.contact_info.label__4"
+            },
+            {
+                "type": "textarea",
+                "id": "contact_info_content_1",
+                "label": "t:sections.main_contact.settings.contact_info.label__5"
+            },
+            {
+                "type": "textarea",
+                "id": "contact_info_content_2",
+                "label": "t:sections.main_contact.settings.contact_info.label__6"
+            },
+            {
+                "type": "checkbox",
+                "id": "enable_border_top",
+                "label": "t:sections.main_contact.settings.contact_info.label__10",
+                "default": true
+            }
+        ]
+	}
+{% endschema %}

@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="{{ 'component-rte.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
+
+{% unless template.suffix contains 'landing' %}
+<div class="page-width page-width--narrow{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
+	<div class="container">
+	  <h3 class="main-page-title page-header{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
+	    {{ page.title | escape }}
+	  </h3>
+	  <div class="rte{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
+	    {{ page.content }}
+        <img src="https://cdn.shopify.com/s/files/1/0878/8813/4446/files/AS23_BCA_LANDING_PAGE_DESKTOP_01.webp"/>
+        <img src="https://cdn.shopify.com/s/files/1/0878/8813/4446/files/AS23_BCA_LANDING_PAGE_DESKTOP3_05.webp"/>
+        <img src="https://cdn.shopify.com/s/files/1/0878/8813/4446/files/AS23_BCA_LANDING_PAGE_DESKTOP3_08.webp"/>
+        <img src="https://cdn.shopify.com/s/files/1/0878/8813/4446/files/AS23_BCA_LANDING_PAGE_DESKTOP3_10.jpg"/><br/>
+        <img src="https://cdn.shopify.com/s/files/1/0878/8813/4446/files/AS23_BCA_LANDING_PAGE_DESKTOP3_12.jpg"/><br/>
+        <img src="https://cdn.shopify.com/s/files/1/0878/8813/4446/files/together-21.png"/>
+        <img src="https://cdn.shopify.com/s/files/1/0878/8813/4446/files/AS23_BCA_LANDING_PAGE_DESKTOP3_25.jpg"/>
+	  </div>
+  	</div>
+</div>
+{% endunless %}
+
+{% schema %}
+{
+  "name": "t:sections.diva.name",
+  "tag": "section",
+  "class": "spaced-section"
+}
+{% endschema %}

@@ -1,0 +1,120 @@
+<link rel="stylesheet" href="{{ 'component-rte.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
+
+{% unless template.suffix contains 'landing' %}
+<div class="page-width page-width--narrow{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
+	<div class="container">
+	  <h3 class="main-page-title page-header{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
+	    {{ page.title | escape }}
+	  </h3>
+	  <div class="rte{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
+	    {{ page.content }}
+        
+         <p><a href="#"><img src="https://cdn.shopify.com/s/files/1/0878/8813/4446/files/AS23_BOPIS_EVERGREEN_landing_page_02.webp"></a></p>
+         <p><a href="#"><img src="https://cdn.shopify.com/s/files/1/0878/8813/4446/files/AS23_BOPIS_EVERGREEN_landing_page_03.webp"></a></p>
+         <p><a href="#"><img src="https://cdn.shopify.com/s/files/1/0878/8813/4446/files/AS23_BOPIS_EVERGREEN_landing_page_04.webp"></a></p>
+           <h2 class="ap-header">FREQUENTLY ASKED QUESTIONS </h2>
+          <div class="accordion-cont">
+            <div class="set">
+               <a class="level2" href="#t">When do I get charged for my purchase?</a>
+               <div class="cont1">
+                  <div class="panel">
+                    <p>You will be charged at the time when the store fulfills your order for pick up.</p>
+                  </div>
+               </div>
+            </div>
+           <div class="set">
+               <a class="level2" href="#t">What types of payments can I use?</a>
+               <div class="cont1">
+                  <div class="panel">
+                    <p>You may use the Ashley Stewart credit card, major credit card, Apple Pay, AfterPay, or PayPal on your purchase.</p>
+                  </div> 
+               </div>
+           </div>
+           <div class="set">
+               <a class="level2" href="#t">Can I cancel my order once it is placed?</a>
+               <div class="cont1">
+                  <div class="panel">
+                    <p>If you would like to cancel your order prior to the store fulfilling, you can reach out to <a style="text-decoration:underline;" target="_blank" href="/pages/contact-us">customer service</a> for assistance. If your order has already been fulfilled by the store, you will need to process your return at the store in person, or via phone. If returning via phone, you will need to provide your payment information to the manager processing the return. Your credit card number will never be written down, and will be entered directly into the system for verification. Please check that your return or exchange meets our Return Policy <a style="text-decoration:underline;" target="_blank" href="/pages/frequently-asked-questions">here.</a></p>
+                  </div> 
+               </div>
+           </div>
+            <div class="set">
+               <a class="level2" href="#t">Can someone else pick up my order?</a>
+               <div class="cont1">
+                  <div class="panel">
+                    <p>Yes, when you are contacted to confirm your pickup, please specify who will be picking up the order. This information will be noted on your order in our system. Whomever picks up the order must show their ID for verification and a copy of your confirmation email to a store associate.</p> 
+                  </div> 
+               </div>
+           </div>
+           <div class="set">
+               <a class="level2" href="#t">What happens if I find something missing from my bag, when I pick up my order?</a>
+               <div class="cont1">
+                  <div class="panel">
+                    <p>Please let us know. We will promptly retrieve a duplicate item, or immediately process a refund for the missing item.</p>
+                   </div> 
+               </div>
+           </div>
+          </div> 
+        
+         
+	  </div>
+  	</div>
+</div>
+
+
+
+ 
+ 
+
+
+  
+{% endunless %}
+
+{% schema %}
+{
+  "name": "faq",
+  "tag": "section",
+  "class": "spaced-section"
+}
+{% endschema %}
+
+<style>
+  .panel p strong { display: block; font-size: 14px; }
+  .panel p { font-size: 13px; }
+  .panel h5 { font-family: 'lato'; font-weight: 600; font-size: 14px; }
+  .set > a.level2:before { position: absolute; content: '';
+    background-image: url(https://cdn.shopify.com/s/files/1/0878/8813/4446/files/plus.png); width: 20px; height: 20px; z-index: 9999999; top: 18px; right: 25px;
+    background-repeat: no-repeat; background-size: contain; border-radius: 50%; }
+  .set a.level2.active:before { background-image: url(https://cdn.shopify.com/s/files/1/0878/8813/4446/files/minus.png); }
+  .cont1 { display: none; padding: 0px 35px 14px 20px; background: #f7f7f7; }
+  .set a.level2 { position: relative; display: block; padding: 16px 15px 17px 20px; text-decoration: none; color: #000 !important;
+    -webkit-transition: all 0.2s linear; -moz-transition: all 0.2s linear; transition: all 0.2s linear; text-transform: capitalize;
+    background: #f7f7f7; font-size: 16px; font-weight: 600; line-height: 20px; }
+  .set:nth-child(odd) a.level2 { background: #eee; }
+  .set:nth-child(even) a.level2 { background: #ccc; }
+  table.table-striped { width: 100%; border: 1px solid #dddada; border-collapse: collapse; }
+  table.table-striped td { padding: 5px 15px; border: 1px solid #d1d1d1; text-align: center; }
+  table.table-striped th { padding: 10px 5px; border: 1px solid #d1d1d1; text-align: center; font-size: 13px; background: #ededed; }
+  .panel a button { width: auto; display: table; }
+  @media ( max-width:768px ) {
+    .set a.level2 { padding: 16px 75px 17px 20px; font-size: 14px; font-weight: 600; line-height: 22px; }
+    h1.main-page-title.page-header { padding: 30px 0px 20px; font-size: 17px; }
+  }
+</style>
+
+<script> 
+$(document).ready(function() {
+    $(".set > a").on("click", function() {
+    if ($(this).hasClass("active")) {
+      $(this).removeClass("active");
+      $(this).siblings(".cont1").slideUp(200);
+    } else {
+      $(".set > a").removeClass("active");
+      $(this).addClass("active");
+      $(".cont1").slideUp(200);
+      $(this).siblings(".cont1").slideDown(200);
+    }
+  });
+}); 
+</script>
