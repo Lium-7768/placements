@@ -2,9 +2,7 @@
   <div class="AScard-body">
     <img
       class="AScard__logo"
-      src="https://www.ashleystewart.com/on/demandware.static/Sites-AshleyStewart-Site/-/default/dwc63767c1/images/as-card-logo.png?sw=98"
-      srcset="https://www.ashleystewart.com/on/demandware.static/Sites-AshleyStewart-Site/-/default/dwc63767c1/images/as-card-logo.png?sw=100 100w,https://www.ashleystewart.com/on/demandware.static/Sites-AshleyStewart-Site/-/default/dwc63767c1/images/as-card-logo.png?sw=200 200w"
-      sizes="98px"
+      src="{{ 'as-card-logo.png' | asset_url }}"
       alt="AS card Logo"
     >
     <div>
@@ -31,14 +29,14 @@
 
 <style>
   .AScard-wrapper {
-    max-width: 392px;
+    width: 100%;
+    margin-top: 24px;
     border: 1px solid #dadada;
   }
 
   .AScard-body {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding: 16px;
   }
 
